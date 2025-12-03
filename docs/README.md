@@ -3,6 +3,7 @@
 ## Build
 
 sphinx-build -b html source build/html
+cp -r build/html/* .
 
 ## clean
 
