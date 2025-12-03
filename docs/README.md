@@ -1,4 +1,4 @@
-# PyGIP Documentation
+# PyHazard Documentation
 
 ## Build
 

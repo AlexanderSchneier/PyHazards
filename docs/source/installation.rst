@@ -1,12 +1,12 @@
 Installation
 ============
 
-PyGIP requires Python 3.8+ and can be installed using pip. We recommend using a conda environment for installation.
+PyHazard requires Python 3.8+ and can be installed using pip. We recommend using a conda environment for installation.
 
-Installing PyGIP
+Installing PyHazard
 ----------------
 
-To get started with PyGIP, set up your environment by installing the required dependencies:
+To get started with PyHazard, set up your environment by installing the required dependencies:
 
 .. code-block:: bash
 

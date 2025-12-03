@@ -1,5 +1,5 @@
-from pygip.datasets import *
-from pygip.models.defense import BackdoorWM
+from pyhazard.datasets import *
+from pyhazard.models.defense import BackdoorWM
 
 
 # TODO test datasets

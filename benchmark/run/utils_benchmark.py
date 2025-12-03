@@ -7,7 +7,7 @@ import sys
 import time
 from typing import Any, Dict, Tuple
 
-# Ensure repository root is on sys.path so imports like `pygip.*` always work
+# Ensure repository root is on sys.path so imports like `pyhazard.*` always work
 _REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
@@ -24,27 +24,27 @@ def _try_import(path: str):
 # ==== Registries (paths match your repo layout) ====
 ATTACK_REGISTRY = {
     # MEA.py — six attacks (0..5)
-    "mea0": "pygip.models.attack.mea.MEA.ModelExtractionAttack0",
-    "mea1": "pygip.models.attack.mea.MEA.ModelExtractionAttack1",
-    "mea2": "pygip.models.attack.mea.MEA.ModelExtractionAttack2",
-    "mea3": "pygip.models.attack.mea.MEA.ModelExtractionAttack3",
-    "mea4": "pygip.models.attack.mea.MEA.ModelExtractionAttack4",
-    "mea5": "pygip.models.attack.mea.MEA.ModelExtractionAttack5",
+    "mea0": "pyhazard.models.attack.mea.MEA.ModelExtractionAttack0",
+    "mea1": "pyhazard.models.attack.mea.MEA.ModelExtractionAttack1",
+    "mea2": "pyhazard.models.attack.mea.MEA.ModelExtractionAttack2",
+    "mea3": "pyhazard.models.attack.mea.MEA.ModelExtractionAttack3",
+    "mea4": "pyhazard.models.attack.mea.MEA.ModelExtractionAttack4",
+    "mea5": "pyhazard.models.attack.mea.MEA.ModelExtractionAttack5",
 
     # Other attacks
-    "advmea": "pygip.models.attack.mea.AdvMEA.AdvMEA",
-    "cega": "pygip.models.attack.mea.CEGA.CEGA",
-    "realistic": "pygip.models.attack.mea.Realistic.RealisticAttack",
-    "dfea_i": "pygip.models.attack.mea.DataFreeMEA.DFEATypeI",
-    "dfea_ii": "pygip.models.attack.mea.DataFreeMEA.DFEATypeII",
-    "dfea_iii": "pygip.models.attack.mea.DataFreeMEA.DFEATypeIII",
+    "advmea": "pyhazard.models.attack.mea.AdvMEA.AdvMEA",
+    "cega": "pyhazard.models.attack.mea.CEGA.CEGA",
+    "realistic": "pyhazard.models.attack.mea.Realistic.RealisticAttack",
+    "dfea_i": "pyhazard.models.attack.mea.DataFreeMEA.DFEATypeI",
+    "dfea_ii": "pyhazard.models.attack.mea.DataFreeMEA.DFEATypeII",
+    "dfea_iii": "pyhazard.models.attack.mea.DataFreeMEA.DFEATypeIII",
 }
 
 DEFENSE_REGISTRY = {
-    "randomwm": "pygip.models.defense.atom.RandomWM.RandomWM",
-    "backdoorwm": "pygip.models.defense.atom.BackdoorWM.BackdoorWM",
-    "survivewm": "pygip.models.defense.atom.SurviveWM.SurviveWM",
-    "imperceptiblewm": "pygip.models.defense.atom.ImperceptibleWM.ImperceptibleWM",
+    "randomwm": "pyhazard.models.defense.atom.RandomWM.RandomWM",
+    "backdoorwm": "pyhazard.models.defense.atom.BackdoorWM.BackdoorWM",
+    "survivewm": "pyhazard.models.defense.atom.SurviveWM.SurviveWM",
+    "imperceptiblewm": "pyhazard.models.defense.atom.ImperceptibleWM.ImperceptibleWM",
     # Add more if needed (e.g., GROVE) using their import paths.
 }
 
@@ -53,10 +53,10 @@ def load_dataset(name: str, root: str = None):
     """Robust loader that tries several known entry points."""
     tried = []
     for mod, fn in [
-        ("pygip.datasets.datasets", "get_dataset"),
-        ("pygip.datasets", "get_dataset"),
-        ("pygip.data", "get_dataset"),
-        ("pygip.data", "build_dataset"),
+        ("pyhazard.datasets.datasets", "get_dataset"),
+        ("pyhazard.datasets", "get_dataset"),
+        ("pyhazard.data", "get_dataset"),
+        ("pyhazard.data", "build_dataset"),
     ]:
         try:
             m = importlib.import_module(mod)

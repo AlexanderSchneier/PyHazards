@@ -1,5 +1,5 @@
-from pygip.datasets import Cora
-from pygip.models.defense import SurviveWM
+from pyhazard.datasets import Cora
+from pyhazard.models.defense import SurviveWM
 
 
 # TODO test datasets

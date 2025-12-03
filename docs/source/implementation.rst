@@ -1,14 +1,14 @@
 Implementation
 ==============
 
-PyGIP is built to be modular and extensible, allowing contributors to implement their own attack and defense strategies.
+PyHazard is built to be modular and extensible, allowing contributors to implement their own attack and defense strategies.
 Below, we detail how to extend the framework by implementing custom attack and defense classes, with a focus on how to
 leverage the provided dataset structure.
 
 Dataset
 -------
 
-The ``Dataset`` class standardizes the data format across PyGIP. Here’s its structure:
+The ``Dataset`` class standardizes the data format across PyHazard. Here’s its structure:
 
 .. code-block:: python
 
@@ -234,5 +234,5 @@ Miscellaneous Tips
 - **Example Scripts**: Please provide an example script in the ``examples/`` folder demonstrating how to run your code. This
   will significantly speed up our code review process.
 
-By following these guidelines, you can seamlessly integrate your custom attack or defense strategies into PyGIP. Happy
+By following these guidelines, you can seamlessly integrate your custom attack or defense strategies into PyHazard. Happy
 coding!

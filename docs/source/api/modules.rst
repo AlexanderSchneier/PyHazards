@@ -1,9 +1,9 @@
 :orphan:
 
-pygip
+pyhazard
 =====
 
 .. toctree::
    :maxdepth: 4
 
-   pygip
+   pyhazard

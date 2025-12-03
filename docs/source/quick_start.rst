@@ -1,6 +1,6 @@
 Quick Start
 =================
-This guide will help you get started with PyGIP quickly.
+This guide will help you get started with PyHazard quickly.
 
 Attack Examples
 ---------------
@@ -67,7 +67,7 @@ Alternatively, you can explicitly specify the device in your code:
 
 .. code-block:: python
 
-    from pygip.utils.hardware import set_device
+    from pyhazard.utils.hardware import set_device
 
     set_device("cuda:0")
 
@@ -77,6 +77,6 @@ Next Steps
 
 For more detailed documentation, please refer to:
 
-- :doc:`pygip_datasets` - Available datasets
-- :doc:`pygip_models_attack` - Detailed attack mechanisms
-- :doc:`pygip_models_defense` - Detailed defense mechanisms
+- :doc:`pyhazard_datasets` - Available datasets
+- :doc:`pyhazard_models_attack` - Detailed attack mechanisms
+- :doc:`pyhazard_models_defense` - Detailed defense mechanisms

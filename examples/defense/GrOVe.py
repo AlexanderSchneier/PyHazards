@@ -1,5 +1,5 @@
-from pygip.datasets import *
-from pygip.models.defense import GroveDefense
+from pyhazard.datasets import *
+from pyhazard.models.defense import GroveDefense
 
 
 # TODO test datasets

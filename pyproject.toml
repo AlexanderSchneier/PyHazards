@@ -3,7 +3,7 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "PyGIP"
+name = "PyHazard"
 version = "1.1.0"
 description = "A Python package for Graph Intellectual Property Protection"
 readme = "README.md"
@@ -37,8 +37,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://labrai.github.io/PyGIP"
-Repository = "https://github.com/LabRAI/PyGIP"
+Homepage = "https://labrai.github.io/PyHazard"
+Repository = "https://github.com/LabRAI/PyHazard"
 
 [project.optional-dependencies]
 # torch 2.3 cannot be installed directly from PyPI, users must add -f
@@ -51,4 +51,4 @@ dgl = ["dgl==2.2.1"]
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["pygip*"]
+include = ["pyhazard*"]

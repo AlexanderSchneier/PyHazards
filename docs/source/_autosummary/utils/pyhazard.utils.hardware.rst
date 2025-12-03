@@ -1,0 +1,30 @@
+﻿pyhazard.utils.hardware
+====================
+
+.. automodule:: pyhazard.utils.hardware
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_device
+      set_device
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

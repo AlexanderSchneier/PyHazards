@@ -1,6 +1,6 @@
-from pygip.datasets import Cora
-from pygip.models.attack import DFEATypeI, DFEATypeII
-from pygip.utils.hardware import set_device
+from pyhazard.datasets import Cora
+from pyhazard.models.attack import DFEATypeI, DFEATypeII
+from pyhazard.utils.hardware import set_device
 
 # TODO verify performance
 # TODO record metrics (original acc, attack acc, fidelity)

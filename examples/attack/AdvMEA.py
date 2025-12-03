@@ -1,6 +1,6 @@
-from pygip.datasets import *
-from pygip.models.attack import AdvMEA
-from pygip.utils.hardware import set_device
+from pyhazard.datasets import *
+from pyhazard.models.attack import AdvMEA
+from pyhazard.utils.hardware import set_device
 
 # TODO verify performance
 # TODO attack after defense

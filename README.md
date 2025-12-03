@@ -53,25 +53,38 @@ pip install "PyHazard[torch,dgl]" \
 
 ## Quick Start
 
-Here’s a simple example to launch a Model Extraction Attack using PyHazard:
+Here's a simple example to use PyHazard:
 
+```python
+from pyhazard.datasets import Cora
+from pyhazard.models.attack import MEA
+
+# Load dataset
+dataset = Cora(api_type='pyg')
+
+# Initialize and run Model Extraction Attack
+attack = MEA(dataset=dataset)
+attack.attack()
 ```
+
+And a simple example to run a defense:
+
+```python
+from pyhazard.datasets import Cora
+from pyhazard.models.defense import ATOM
+
+# Load dataset
+dataset = Cora(api_type='pyg')
+
+# Initialize and run ATOM defense
+defense = ATOM(dataset=dataset)
+defense.defense()
 ```
 
-This code loads the xxx dataset, initializes a basic hazard prediction baseline, and runs the
-prediction with a specified sampling ratio.
-
-And a simple example to run:
-
-```
-```
-
-which runs xxx
-
-If you want to use cuda, please set environment variable:
+If you want to use CUDA, please set environment variable:
 
 ```shell
-export PyHazard_DEVICE=cuda:0
+export PYHAZARD_DEVICE=cuda:0
 ```
 
 ## Implementation & Contributors Guideline

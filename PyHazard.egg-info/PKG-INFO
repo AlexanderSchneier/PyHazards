@@ -1,0 +1,138 @@
+Metadata-Version: 2.4
+Name: PyHazard
+Version: 1.1.0
+Summary: A Python package for Graph Intellectual Property Protection
+Author-email: Bolin Shen <blshen@fsu.edu>
+License: BSD-2-Clause
+Project-URL: Homepage, https://labrai.github.io/PyHazard
+Project-URL: Repository, https://github.com/LabRAI/PyHazard
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Requires-Python: <3.13,>=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch-geometric>=2.0.0
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: scipy>=1.6.0
+Requires-Dist: networkx>=2.5
+Requires-Dist: scikit-learn>=0.24.0
+Requires-Dist: tqdm>=4.50.0
+Requires-Dist: torchdata<0.8.0,>=0.7.0
+Requires-Dist: pyyaml>=5.3.0
+Requires-Dist: pydantic>=2.0.0
+Provides-Extra: torch
+Requires-Dist: torch==2.3.0; extra == "torch"
+Provides-Extra: dgl
+Requires-Dist: dgl==2.2.1; extra == "dgl"
+Dynamic: license-file
+
+# PyHazard
+
+[![PyPI - Version](https://img.shields.io/pypi/v/PyHazard)](https://pypi.org/project/PyHazard)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/LabRAI/PyHazard/docs.yml)](https://github.com/LabRAI/PyHazard/actions)
+[![License](https://img.shields.io/github/license/LabRAI/PyHazard.svg)](https://github.com/LabRAI/PyHazard/blob/main/LICENSE)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/PyHazard)](https://github.com/LabRAI/PyHazard)
+[![Issues](https://img.shields.io/github/issues/LabRAI/PyHazard)](https://github.com/LabRAI/PyHazard)
+[![Pull Requests](https://img.shields.io/github/issues-pr/LabRAI/PyHazard)](https://github.com/LabRAI/PyHazard)
+[![Stars](https://img.shields.io/github/stars/LabRAI/PyHazard)](https://github.com/LabRAI/PyHazard)
+[![GitHub forks](https://img.shields.io/github/forks/LabRAI/PyHazard)](https://github.com/LabRAI/PyHazard)
+
+PyHazard is a Python library designed for using AI tools for hazard prediction. It provides a modular framework to implement and test prediction strategies on natural hazards.
+
+## How to Cite
+
+If you find it useful, please consider citing the following work:
+
+```
+```
+
+
+## Installation
+
+PyHazard supports both CPU and GPU environments. Make sure you have Python installed (version >= 3.8, <3.13).
+
+### Base Installation
+
+First, install the core package:
+
+```bash
+pip install PyHazard
+```
+
+This will install PyHazard with minimal dependencies.
+
+### CPU Version
+
+```bash
+pip install "PyHazard[torch,dgl]" \
+  --index-url https://download.pytorch.org/whl/cpu \
+  --extra-index-url https://pypi.org/simple \
+  -f https://data.dgl.ai/wheels/repo.html
+```
+
+### GPU Version (CUDA 12.1)
+
+```bash
+pip install "PyHazard[torch,dgl]" \
+  --index-url https://download.pytorch.org/whl/cu121 \
+  --extra-index-url https://pypi.org/simple \
+  -f https://data.dgl.ai/wheels/torch-2.3/cu121/repo.html
+```
+
+## Quick Start
+
+Here's a simple example to use PyHazard:
+
+```python
+from pyhazard.datasets import Cora
+from pyhazard.models.attack import MEA
+
+# Load dataset
+dataset = Cora(api_type='pyg')
+
+# Initialize and run Model Extraction Attack
+attack = MEA(dataset=dataset)
+attack.attack()
+```
+
+And a simple example to run a defense:
+
+```python
+from pyhazard.datasets import Cora
+from pyhazard.models.defense import ATOM
+
+# Load dataset
+dataset = Cora(api_type='pyg')
+
+# Initialize and run ATOM defense
+defense = ATOM(dataset=dataset)
+defense.defense()
+```
+
+If you want to use CUDA, please set environment variable:
+
+```shell
+export PYHAZARD_DEVICE=cuda:0
+```
+
+## Implementation & Contributors Guideline
+
+Refer to [Implementation Guideline](.github/IMPLEMENTATION.md)
+
+Refer to [Contributors Guideline](.github/CONTRIBUTING.md)
+
+## License
+
+[BSD 2-Clause License](LICENSE)
+
+## Contact
+
+For questions or contributions, please contact xc25@fsu.edu.

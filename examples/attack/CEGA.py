@@ -1,5 +1,5 @@
-from pygip.datasets import *
-from pygip.models.attack import CEGA
+from pyhazard.datasets import *
+from pyhazard.models.attack import CEGA
 
 
 # TODO verify performance

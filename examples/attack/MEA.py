@@ -1,7 +1,7 @@
-from pygip.datasets import *
-from pygip.models.attack import ModelExtractionAttack0, ModelExtractionAttack1, ModelExtractionAttack2, \
+from pyhazard.datasets import *
+from pyhazard.models.attack import ModelExtractionAttack0, ModelExtractionAttack1, ModelExtractionAttack2, \
     ModelExtractionAttack3, ModelExtractionAttack4, ModelExtractionAttack5
-from pygip.utils.hardware import set_device
+from pyhazard.utils.hardware import set_device
 
 # TODO verify performance
 # TODO generate shadow graph
