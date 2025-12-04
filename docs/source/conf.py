@@ -4,7 +4,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath('../../'))
 
-project = 'PyHazard'
+project = 'PyHazards'
 copyright = '2025, RAILab'
 author = 'RAILab'
 release = '1.0.1'
@@ -46,9 +46,9 @@ napoleon_numpy_docstring = True
 
 html_theme = 'furo'
 html_static_path = ['_static']
-html_baseurl = "https://labrai.github.io/PyHazard/"
+html_baseurl = "https://labrai.github.io/PyHazards/"
 html_logo = None
-html_title = "PyHazard 1.0.1 documentation"
+html_title = "PyHazards 1.0.1 documentation"
 
 html_theme_options = {
     "navigation_with_keys": True,

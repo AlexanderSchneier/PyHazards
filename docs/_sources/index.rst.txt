@@ -1,50 +1,50 @@
 .. raw:: html
 
    <div style="margin: 30px 0; text-align: center;">
-     <img src="_static/logo.png" alt="PyHazard Icon" style="max-width: 260px; height: auto;">
+     <img src="_static/logo.png" alt="PyHazards Icon" style="max-width: 260px; height: auto;">
    </div>
 
-.. image:: https://img.shields.io/pypi/v/PyHazard
-   :target: https://pypi.org/project/PyHazard
+.. image:: https://img.shields.io/pypi/v/PyHazards
+   :target: https://pypi.org/project/PyHazards
    :alt: PyPI Version
 
-.. image:: https://img.shields.io/github/actions/workflow/status/LabRAI/PyHazard/docs.yml
-   :target: https://github.com/LabRAI/PyHazard/actions
+.. image:: https://img.shields.io/github/actions/workflow/status/LabRAI/PyHazards/docs.yml
+   :target: https://github.com/LabRAI/PyHazards/actions
    :alt: Build Status
 
-.. image:: https://img.shields.io/github/license/LabRAI/PyHazard.svg
-   :target: https://github.com/LabRAI/PyHazard/blob/main/LICENSE
+.. image:: https://img.shields.io/github/license/LabRAI/PyHazards.svg
+   :target: https://github.com/LabRAI/PyHazards/blob/main/LICENSE
    :alt: License
 
-.. image:: https://img.shields.io/pypi/dm/pyhazard
-   :target: https://github.com/LabRAI/PyHazard
+.. image:: https://img.shields.io/pypi/dm/pyhazards
+   :target: https://github.com/LabRAI/PyHazards
    :alt: PyPI Downloads
 
-.. image:: https://img.shields.io/github/issues/LabRAI/PyHazard
-   :target: https://github.com/LabRAI/PyHazard
+.. image:: https://img.shields.io/github/issues/LabRAI/PyHazards
+   :target: https://github.com/LabRAI/PyHazards
    :alt: Issues
 
-.. image:: https://img.shields.io/github/issues-pr/LabRAI/PyHazard
-   :target: https://github.com/LabRAI/PyHazard
+.. image:: https://img.shields.io/github/issues-pr/LabRAI/PyHazards
+   :target: https://github.com/LabRAI/PyHazards
    :alt: Pull Requests
 
-.. image:: https://img.shields.io/github/stars/LabRAI/PyHazard
-   :target: https://github.com/LabRAI/PyHazard
+.. image:: https://img.shields.io/github/stars/LabRAI/PyHazards
+   :target: https://github.com/LabRAI/PyHazards
    :alt: Stars
 
-.. image:: https://img.shields.io/github/forks/LabRAI/PyHazard
-   :target: https://github.com/LabRAI/PyHazard
+.. image:: https://img.shields.io/github/forks/LabRAI/PyHazards
+   :target: https://github.com/LabRAI/PyHazards
    :alt: GitHub forks
 
 .. image:: _static/github.svg
-   :target: https://github.com/LabRAI/PyHazard
+   :target: https://github.com/LabRAI/PyHazards
    :alt: GitHub
 
 ----
 
-**PyHazard** is a comprehensive Python framework for AI-powered hazard prediction and risk assessment. Built on PyTorch with a hazard-first design, the library provides a modular and extensible architecture for building, training, and deploying machine learning models to predict and analyze natural hazards and environmental risks.
+**PyHazards** is a comprehensive Python framework for AI-powered hazard prediction and risk assessment. Built on PyTorch with a hazard-first design, the library provides a modular and extensible architecture for building, training, and deploying machine learning models to predict and analyze natural hazards and environmental risks.
 
-**PyHazard is designed for:**
+**PyHazards is designed for:**
 
 - **Hazard-First Architecture**: Unified dataset interface for tabular, temporal, and raster data
 - **Simple, Extensible Models**: Ready-to-use MLP/CNN/temporal encoders with task heads
@@ -59,10 +59,10 @@ Basic Usage Example (toy dataset):
 .. code-block:: python
 
     import torch
-    from pyhazard.datasets import DataBundle, DataSplit, Dataset, FeatureSpec, LabelSpec
-    from pyhazard.models import build_model
-    from pyhazard.engine import Trainer
-    from pyhazard.metrics import ClassificationMetrics
+    from pyhazards.datasets import DataBundle, DataSplit, Dataset, FeatureSpec, LabelSpec
+    from pyhazards.models import build_model
+    from pyhazards.engine import Trainer
+    from pyhazards.metrics import ClassificationMetrics
 
     class ToyHazard(Dataset):
         def _load(self):
@@ -94,7 +94,7 @@ Core Components
 ---------------
 
 **Datasets**
-   PyHazard provides a unified dataset interface for tabular, temporal, and raster data, returning a ``DataBundle`` with splits and specs.
+   PyHazards provides a unified dataset interface for tabular, temporal, and raster data, returning a ``DataBundle`` with splits and specs.
 
 **Models**
    Extensible model architecture with MLP/CNN/temporal backbones and task heads for classification, regression, and segmentation.
@@ -106,15 +106,15 @@ Core Components
 How to Cite
 -----------
 
-If you use PyHazard in your research, please cite:
+If you use PyHazards in your research, please cite:
 
 .. code-block:: bibtex
 
-   @software{pyhazard2025,
-     title={PyHazard: A Python Framework for AI-Powered Hazard Prediction},
+   @software{pyhazards2025,
+     title={PyHazards: A Python Framework for AI-Powered Hazard Prediction},
      author={Cheng, Xueqi},
      year={2025},
-     url={https://github.com/LabRAI/PyHazard}
+     url={https://github.com/LabRAI/PyHazards}
    }
 
 
@@ -131,11 +131,11 @@ If you use PyHazard in your research, please cite:
    :caption: API Reference
    :hidden:
 
-   pyhazard_datasets
-   pyhazard_models
-   pyhazard_engine
-   pyhazard_metrics
-   pyhazard_utils
+   pyhazards_datasets
+   pyhazards_models
+   pyhazards_engine
+   pyhazards_metrics
+   pyhazards_utils
 
 .. toctree::
    :maxdepth: 2

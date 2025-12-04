@@ -1,6 +1,6 @@
 Quick Start
 =================
-This guide will help you get started with PyHazard quickly using the hazard-first API.
+This guide will help you get started with PyHazards quickly using the hazard-first API.
 
 Basic Usage
 -----------
@@ -11,10 +11,10 @@ Toy Example (tabular classification)
 .. code-block:: python
 
     import torch
-    from pyhazard.datasets import DataBundle, DataSplit, Dataset, FeatureSpec, LabelSpec
-    from pyhazard.models import build_model
-    from pyhazard.engine import Trainer
-    from pyhazard.metrics import ClassificationMetrics
+    from pyhazards.datasets import DataBundle, DataSplit, Dataset, FeatureSpec, LabelSpec
+    from pyhazards.models import build_model
+    from pyhazards.engine import Trainer
+    from pyhazards.metrics import ClassificationMetrics
 
     class ToyHazard(Dataset):
         def _load(self):
@@ -45,19 +45,19 @@ Toy Example (tabular classification)
 GPU Support
 -----------
 
-PyHazard automatically detects CUDA availability. To explicitly set the device:
+PyHazards automatically detects CUDA availability. To explicitly set the device:
 
 **Using Environment Variable:**
 
 .. code-block:: bash
 
-    export PYHAZARD_DEVICE=cuda:0
+    export PYHAZARDS_DEVICE=cuda:0
 
 **Using Python API:**
 
 .. code-block:: python
 
-    from pyhazard.utils import set_device
+    from pyhazards.utils import set_device
 
     # Set to use CUDA device 0
     set_device("cuda:0")
@@ -70,6 +70,6 @@ Next Steps
 
 For more detailed documentation, please refer to:
 
-- :doc:`pyhazard_datasets` - Dataset interface and registration
-- :doc:`pyhazard_utils` - Utility functions and helpers
+- :doc:`pyhazards_datasets` - Dataset interface and registration
+- :doc:`pyhazards_utils` - Utility functions and helpers
 - :doc:`implementation` - Guide for implementing custom datasets and models

@@ -1,10 +1,10 @@
 Installation
 ============
 
-PyHazard requires Python 3.8+ and can be installed using pip. We recommend using a conda environment for installation.
+PyHazards requires Python 3.8+ and can be installed using pip. We recommend using a conda environment for installation.
 
-Installing PyHazard
--------------------
+Installing PyHazards
+--------------------
 
 Base install:
 
@@ -14,7 +14,7 @@ Base install:
 
 PyTorch notes (Python 3.8, CUDA 12.6 example):
 
-- Install the matching PyTorch wheel first, then install PyHazard.
+- Install the matching PyTorch wheel first, then install PyHazards.
 - Example (CUDA 12.6):
 
   .. code-block:: bash

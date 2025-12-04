@@ -1,15 +1,15 @@
-# PyHazard
+# PyHazards
 
-[![PyPI - Version](https://img.shields.io/pypi/v/PyHazard)](https://pypi.org/project/PyHazard)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/LabRAI/PyHazard/docs.yml)](https://github.com/LabRAI/PyHazard/actions)
-[![License](https://img.shields.io/github/license/LabRAI/PyHazard.svg)](https://github.com/LabRAI/PyHazard/blob/main/LICENSE)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/PyHazard)](https://github.com/LabRAI/PyHazard)
-[![Issues](https://img.shields.io/github/issues/LabRAI/PyHazard)](https://github.com/LabRAI/PyHazard)
-[![Pull Requests](https://img.shields.io/github/issues-pr/LabRAI/PyHazard)](https://github.com/LabRAI/PyHazard)
-[![Stars](https://img.shields.io/github/stars/LabRAI/PyHazard)](https://github.com/LabRAI/PyHazard)
-[![GitHub forks](https://img.shields.io/github/forks/LabRAI/PyHazard)](https://github.com/LabRAI/PyHazard)
+[![PyPI - Version](https://img.shields.io/pypi/v/PyHazards)](https://pypi.org/project/PyHazards)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/LabRAI/PyHazards/docs.yml)](https://github.com/LabRAI/PyHazards/actions)
+[![License](https://img.shields.io/github/license/LabRAI/PyHazards.svg)](https://github.com/LabRAI/PyHazards/blob/main/LICENSE)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/PyHazards)](https://github.com/LabRAI/PyHazards)
+[![Issues](https://img.shields.io/github/issues/LabRAI/PyHazards)](https://github.com/LabRAI/PyHazards)
+[![Pull Requests](https://img.shields.io/github/issues-pr/LabRAI/PyHazards)](https://github.com/LabRAI/PyHazards)
+[![Stars](https://img.shields.io/github/stars/LabRAI/PyHazards)](https://github.com/LabRAI/PyHazards)
+[![GitHub forks](https://img.shields.io/github/forks/LabRAI/PyHazards)](https://github.com/LabRAI/PyHazards)
 
-PyHazard is a Python framework for AI-powered hazard prediction and risk assessment. It provides a modular, hazard-first architecture for building, training, and deploying machine learning models to predict and analyze natural hazards (earthquake, wildfire, flood, hurricane, landslide, etc.).
+PyHazards is a Python framework for AI-powered hazard prediction and risk assessment. It provides a modular, hazard-first architecture for building, training, and deploying machine learning models to predict and analyze natural hazards (earthquake, wildfire, flood, hurricane, landslide, etc.).
 
 ## Features
 
@@ -21,22 +21,22 @@ PyHazard is a Python framework for AI-powered hazard prediction and risk assessm
 
 ## Installation
 
-PyHazard supports both CPU and GPU environments. Make sure you have Python installed (version >= 3.8, <3.13).
+PyHazards supports both CPU and GPU environments. Make sure you have Python installed (version >= 3.8, <3.13).
 
 ### Base Installation
 
 Install the core package:
 
 ```bash
-pip install PyHazard
+pip install pyhazards
 ```
 
-This will install PyHazard with minimal dependencies.
+This will install PyHazards with minimal dependencies.
 
 Python 3.8 and PyTorch (CUDA 12.6 example)
 -----------------------------------------
 
-If you need a specific PyTorch build (e.g., CUDA 12.6), install PyTorch first, then install PyHazard:
+If you need a specific PyTorch build (e.g., CUDA 12.6), install PyTorch first, then install PyHazards:
 
 ```bash
 # Example for CUDA 12.6 wheels
@@ -47,14 +47,14 @@ pip install pyhazards
 
 ## Quick Start
 
-Here's a simple example to get started with PyHazard using a toy tabular dataset:
+Here's a simple example to get started with PyHazards using a toy tabular dataset:
 
 ```python
 import torch
-from pyhazard.datasets import DataBundle, DataSplit, Dataset, FeatureSpec, LabelSpec
-from pyhazard.models import build_model
-from pyhazard.engine import Trainer
-from pyhazard.metrics import ClassificationMetrics
+from pyhazards.datasets import DataBundle, DataSplit, Dataset, FeatureSpec, LabelSpec
+from pyhazards.models import build_model
+from pyhazards.engine import Trainer
+from pyhazards.metrics import ClassificationMetrics
 
 class ToyHazard(Dataset):
     def _load(self):
@@ -88,20 +88,20 @@ print(results)
 To use CUDA for GPU acceleration, set the environment variable:
 
 ```shell
-export PYHAZARD_DEVICE=cuda:0
+export PYHAZARDS_DEVICE=cuda:0
 ```
 
 Or specify the device in your code:
 
 ```python
-from pyhazard.utils import set_device
+from pyhazards.utils import set_device
 
 set_device("cuda:0")
 ```
 
 ## Documentation
 
-Full documentation is available at: [https://labrai.github.io/PyHazard](https://labrai.github.io/PyHazard)
+Full documentation is available at: [https://labrai.github.io/PyHazards](https://labrai.github.io/PyHazards)
 
 ## Contributing
 
@@ -111,14 +111,14 @@ We welcome contributions! Please see our:
 
 ## Citation
 
-If you use PyHazard in your research, please cite:
+If you use PyHazards in your research, please cite:
 
 ```bibtex
-@software{pyhazard2025,
-  title={PyHazard: A Python Framework for AI-Powered Hazard Prediction},
+@software{pyhazards2025,
+  title={PyHazards: A Python Framework for AI-Powered Hazard Prediction},
   author={Cheng, Xueqi},
   year={2025},
-  url={https://github.com/LabRAI/PyHazard}
+  url={https://github.com/LabRAI/PyHazards}
 }
 ```
 

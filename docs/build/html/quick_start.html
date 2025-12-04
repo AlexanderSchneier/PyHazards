@@ -3,11 +3,11 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Datasets" href="pyhazard_datasets.html"><link rel="prev" title="Installation" href="installation.html">
-        <link rel="canonical" href="https://labrai.github.io/PyHazard/quick_start.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Datasets" href="pyhazards_datasets.html"><link rel="prev" title="Installation" href="installation.html">
+        <link rel="canonical" href="https://labrai.github.io/PyHazards/quick_start.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>Quick Start - PyHazard 1.0.1 documentation</title>
+        <title>Quick Start - PyHazards 1.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -162,7 +162,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">PyHazard 1.0.1 documentation</div></a>
+      <a href="index.html"><div class="brand">PyHazards 1.0.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -183,7 +183,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <span class="sidebar-brand-text">PyHazard 1.0.1 documentation</span>
+  <span class="sidebar-brand-text">PyHazards 1.0.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -198,11 +198,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="pyhazard_datasets.html">Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pyhazard_models.html">Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pyhazard_engine.html">Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pyhazard_metrics.html">Metrics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pyhazard_utils.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyhazards_datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyhazards_models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyhazards_engine.html">Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyhazards_metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyhazards_utils.html">Utils</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
 <ul>
@@ -250,16 +250,16 @@
         <article role="main" id="furo-main-content">
           <section id="quick-start">
 <h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h1>
-<p>This guide will help you get started with PyHazard quickly using the hazard-first API.</p>
+<p>This guide will help you get started with PyHazards quickly using the hazard-first API.</p>
 <section id="basic-usage">
 <h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">¶</a></h2>
 <section id="toy-example-tabular-classification">
 <h3>Toy Example (tabular classification)<a class="headerlink" href="#toy-example-tabular-classification" title="Link to this heading">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazard.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataBundle</span><span class="p">,</span> <span class="n">DataSplit</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">FeatureSpec</span><span class="p">,</span> <span class="n">LabelSpec</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazard.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_model</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazard.engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trainer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazard.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClassificationMetrics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazards.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataBundle</span><span class="p">,</span> <span class="n">DataSplit</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">FeatureSpec</span><span class="p">,</span> <span class="n">LabelSpec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazards.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazards.engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazards.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClassificationMetrics</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">ToyHazard</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -292,13 +292,13 @@
 </section>
 <section id="gpu-support">
 <h2>GPU Support<a class="headerlink" href="#gpu-support" title="Link to this heading">¶</a></h2>
-<p>PyHazard automatically detects CUDA availability. To explicitly set the device:</p>
+<p>PyHazards automatically detects CUDA availability. To explicitly set the device:</p>
 <p><strong>Using Environment Variable:</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PYHAZARD_DEVICE</span><span class="o">=</span>cuda:0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PYHAZARDS_DEVICE</span><span class="o">=</span>cuda:0
 </pre></div>
 </div>
 <p><strong>Using Python API:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyhazard.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_device</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyhazards.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_device</span>
 
 <span class="c1"># Set to use CUDA device 0</span>
 <span class="n">set_device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span><span class="p">)</span>
@@ -312,8 +312,8 @@
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
 <p>For more detailed documentation, please refer to:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="pyhazard_datasets.html"><span class="doc">Datasets</span></a> - Dataset interface and registration</p></li>
-<li><p><a class="reference internal" href="pyhazard_utils.html"><span class="doc">Utils</span></a> - Utility functions and helpers</p></li>
+<li><p><a class="reference internal" href="pyhazards_datasets.html"><span class="doc">Datasets</span></a> - Dataset interface and registration</p></li>
+<li><p><a class="reference internal" href="pyhazards_utils.html"><span class="doc">Utils</span></a> - Utility functions and helpers</p></li>
 <li><p><a class="reference internal" href="implementation.html"><span class="doc">Implementation Guide</span></a> - Guide for implementing custom datasets and models</p></li>
 </ul>
 </section>
@@ -324,7 +324,7 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="pyhazard_datasets.html">
+          <a class="next-page" href="pyhazards_datasets.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>

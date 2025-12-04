@@ -1,9 +1,9 @@
 :orphan:
 
-pyhazard
-========
+pyhazards
+=========
 
 .. toctree::
    :maxdepth: 4
 
-   pyhazard
+   pyhazards

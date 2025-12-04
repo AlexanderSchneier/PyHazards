@@ -1,4 +1,4 @@
-# PyHazard Documentation
+# PyHazards Documentation
 
 ## Build
 

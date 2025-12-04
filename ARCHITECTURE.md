@@ -1,6 +1,6 @@
-# PyHazard Architecture & Public API Sketch (Hazard-Centric)
+# PyHazards Architecture & Public API Sketch (Hazard-Centric)
 
-PyHazard targets hazard prediction (earthquake, wildfire, flood, hurricane, etc.) with an easy, batteries-included API. The design is hazard-first, GPU/multi-GPU ready, and keeps the API familiar to users of popular ML libraries.
+PyHazards targets hazard prediction (earthquake, wildfire, flood, hurricane, etc.) with an easy, batteries-included API. The design is hazard-first, GPU/multi-GPU ready, and keeps the API familiar to users of popular ML libraries.
 
 ## Design Principles
 - **Minimal onboarding**: one-liner load/train/evaluate for common hazards.
@@ -10,43 +10,43 @@ PyHazard targets hazard prediction (earthquake, wildfire, flood, hurricane, etc.
 - **Composable pipelines**: data → transforms → model → metrics → reporting with sensible defaults.
 - **Extensible registry**: datasets, models, transforms, metrics, and pipelines are all discoverable by string names.
 
-## Proposed Package Layout (building on current `pyhazard/`)
-- `pyhazard.datasets`
+## Proposed Package Layout (building on current `pyhazards/`)
+- `pyhazards.datasets`
   - `Dataset` base: unified API (`.load(split) -> DataBundle`, exposes `feature_spec`, `label_spec`, `splits`, `metadata`).
   - `hazards/` (new): curated loaders
     - `EarthquakeUSGS`, `WildfireMODIS`, `FloodCopernicus`, `HurricaneNOAA`, `LandslideNASA`, etc.
     - Each handles download/cache, normalization, split logic, CRS handling for geospatial data, and returns tensors ready for models.
   - `transforms/`: common preprocessing (standardize, log-scale precip, NDVI/NDWI indices, temporal windowing, patch extraction for rasters).
   - `registry.py`: `load_dataset(name, split="train", cache_dir=None, **kwargs)`.
-- `pyhazard.models`
+- `pyhazards.models`
   - `backbones.py`: generic modules (MLP, CNN patch encoder, temporal encoder with GRU/Transformer-lite).
   - `heads.py`: task heads (`ClassificationHead`, `RegressionHead`, `SegmentationHead` for raster masks).
   - `builder.py`: `build_model(name="mlp"|"cnn"|"temporal", task="regression"|..., **kwargs)`.
   - `registry.py`: map model names to builders + metadata (input types supported).
-- `pyhazard.engine`
+- `pyhazards.engine`
   - `Trainer`: fit/eval/predict abstraction with callbacks, early stopping, checkpointing, mixed precision, gradient accumulation.
   - `distributed`: thin wrapper for PyTorch DDP; `strategy="auto"|"ddp"|"dp"`.
   - `inference.py`: batch/stream inference; sliding-window raster tiling for large scenes.
-- `pyhazard.metrics`
+- `pyhazards.metrics`
   - Classification: Acc/F1/Precision/Recall/AUROC.
   - Regression: MAE/RMSE/R².
   - Segmentation: IoU/Dice.
   - Calibration: ECE/Brier.
-- `pyhazard.utils`
+- `pyhazards.utils`
   - `hardware.py`: `auto_device(prefer="cuda")`, `num_devices()`, simple device validation.
   - `seed_all`, logging helpers (stdout/JSON/CSV), timer/memory profilers.
-- `pyhazard.cli`
-  - `pyhazard run --dataset wildfire_modis --model cnn --task segmentation --device auto --strategy ddp --mixed-precision`.
+- `pyhazards.cli`
+  - `pyhazards run --dataset wildfire_modis --model cnn --task segmentation --device auto --strategy ddp --mixed-precision`.
 
 ## Core Python Flow
 ```python
-from pyhazard import datasets, models
-from pyhazard.engine import Trainer
-from pyhazard.metrics import RegressionMetrics
-from pyhazard.utils import auto_device
+from pyhazards import datasets, models
+from pyhazards.engine import Trainer
+from pyhazards.metrics import RegressionMetrics
+from pyhazards.utils import auto_device
 
 # 1) Load data
-data = datasets.load("flood_copernicus", split_config="standard", cache_dir="~/.pyhazard")
+data = datasets.load("flood_copernicus", split_config="standard", cache_dir="~/.pyhazards")
 
 # 2) Build model
 model = models.build(
@@ -76,7 +76,7 @@ trainer.save_checkpoint("checkpoints/flood_temporal.pt")
 
 ## CLI Flow
 ```bash
-pyhazard run \
+pyhazards run \
   --dataset earthquake_usgs \
   --model mlp \
   --task classification \
@@ -102,6 +102,6 @@ pyhazard run \
 - New transform: add a callable, register via `datasets.transforms`.
 - New model: implement `nn.Module`, expose via `models.registry` with metadata (`supported_inputs`, `task`).
 - New metric: subclass `MetricBase`, add to `metrics` namespace.
-- New pipeline/workflow: compose dataset + transforms + model + metrics in `pyhazard.workflows`.
+- New pipeline/workflow: compose dataset + transforms + model + metrics in `pyhazards.workflows`.
 
 This design keeps the surface area small (load → build → train → evaluate) while being hazard-first, GPU-ready, and easy to extend as new hazards, data modalities, or models are added.

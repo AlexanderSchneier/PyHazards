@@ -1,7 +1,7 @@
 Core Team
 =========
 
-Our team is composed of dedicated researchers and developers who contribute to PyHazard's development and maintenance.
+Our team is composed of dedicated researchers and developers who contribute to PyHazards's development and maintenance.
 
 Lead Developer
 --------------
@@ -19,20 +19,20 @@ Principal Contributors & Maintainers
 
 Core Contributors
 -----------------
-.. * `Unique Karki <https://labrai.github.io/PyHazard>`_ - [Affiliation]
+.. * `Unique Karki <https://labrai.github.io/PyHazards>`_ - [Affiliation]
 .. * `Yujing Ju <https://juyujing.com>`__ - Heriot-Watt University
 .. * `Zhan Cheng <https://jaycheng113.github.io>`__ - University of Wisconsin-Madison
 .. * `Zaiyi Zheng <https://zhengzaiyi.github.io>`__ - University of Virginia
-.. * `Tyler Blalock <https://labrai.github.io/PyHazard>`_ - [Affiliation]
-.. * `Sibtain Syed <https://labrai.github.io/PyHazard>`_ - [Affiliation]
-.. * `Md Ibrahim <https://labrai.github.io/PyHazard>`_ - Uttara University, Bangladesh
-.. * `Aditya Khanal <https://labrai.github.io/PyHazard>`_ - Tribhuvan University, Nepal
-.. * `Kedar Satish Awale <https://labrai.github.io/PyHazard>`_ - Florida State University
-.. * `Hong Iris <https://labrai.github.io/PyHazard>`_ - Washington University in St. Louis
-.. * `Aasman Bashyal <https://labrai.github.io/PyHazard>`_ - [Affiliation]
-.. * `Cameron Bender <https://labrai.github.io/PyHazard>`_ - Florida State University
-.. * `Yushi Huang <https://labrai.github.io/PyHazard>`_ - [Affiliation]
-.. * `Anurag Shukla <https://labrai.github.io/PyHazard>`_ - [Affiliation]
+.. * `Tyler Blalock <https://labrai.github.io/PyHazards>`_ - [Affiliation]
+.. * `Sibtain Syed <https://labrai.github.io/PyHazards>`_ - [Affiliation]
+.. * `Md Ibrahim <https://labrai.github.io/PyHazards>`_ - Uttara University, Bangladesh
+.. * `Aditya Khanal <https://labrai.github.io/PyHazards>`_ - Tribhuvan University, Nepal
+.. * `Kedar Satish Awale <https://labrai.github.io/PyHazards>`_ - Florida State University
+.. * `Hong Iris <https://labrai.github.io/PyHazards>`_ - Washington University in St. Louis
+.. * `Aasman Bashyal <https://labrai.github.io/PyHazards>`_ - [Affiliation]
+.. * `Cameron Bender <https://labrai.github.io/PyHazards>`_ - Florida State University
+.. * `Yushi Huang <https://labrai.github.io/PyHazards>`_ - [Affiliation]
+.. * `Anurag Shukla <https://labrai.github.io/PyHazards>`_ - [Affiliation]
 
 
 ----------------

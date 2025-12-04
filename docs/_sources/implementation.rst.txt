@@ -1,7 +1,7 @@
 Implementation Guide
 ====================
 
-PyHazard is modular and registry-driven. This guide shows how to add your own datasets, models, transforms, and metrics in line with the hazard-first architecture.
+PyHazards is modular and registry-driven. This guide shows how to add your own datasets, models, transforms, and metrics in line with the hazard-first architecture.
 
 Datasets
 --------
@@ -11,7 +11,7 @@ Implement a dataset by subclassing ``Dataset`` and returning a ``DataBundle`` fr
 .. code-block:: python
 
     import torch
-    from pyhazard.datasets import (
+    from pyhazards.datasets import (
         DataBundle, DataSplit, Dataset, FeatureSpec, LabelSpec, register_dataset
     )
 
@@ -47,7 +47,7 @@ Use the provided backbones (MLP, CNN patch encoder, temporal encoder) and task h
 .. code-block:: python
 
     import torch.nn as nn
-    from pyhazard.models import register_model
+    from pyhazards.models import register_model
 
     def my_model_builder(task: str, in_dim: int, out_dim: int, **kwargs) -> nn.Module:
         # Simple example: a two-layer MLP for classification/regression
@@ -68,8 +68,8 @@ Use the ``Trainer`` for fit/evaluate/predict with optional AMP and multi-GPU (DD
 
 .. code-block:: python
 
-    from pyhazard.engine import Trainer
-    from pyhazard.metrics import ClassificationMetrics
+    from pyhazards.engine import Trainer
+    from pyhazards.metrics import ClassificationMetrics
 
     model = ...  # build_model(...) or a registered model
     trainer = Trainer(model=model, metrics=[ClassificationMetrics()], mixed_precision=True)
