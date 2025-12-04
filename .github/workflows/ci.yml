@@ -24,7 +24,8 @@ jobs:
           python -m pip install -e .
 
       - name: Import smoke test
-        run: python - <<'PY'
-import pyhazards
-print("pyhazards version:", pyhazards.__version__)
-PY
+        run: |
+          python - <<'PY'
+          import pyhazards
+          print("pyhazards version:", pyhazards.__version__)
+          PY
