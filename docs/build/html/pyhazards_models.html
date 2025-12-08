@@ -305,6 +305,67 @@
 </pre></div>
 </div>
 </section>
+<section id="mamba-based-wildfire-model-spatio-temporal">
+<h2>Mamba-based wildfire model (spatio-temporal)<a class="headerlink" href="#mamba-based-wildfire-model-spatio-temporal" title="Link to this heading">¶</a></h2>
+<p>PyHazards ships a Mamba-style spatio-temporal model for county-day wildfire prediction using ERA5 features. It couples a selective state-space temporal encoder with a lightweight GCN to mix neighboring counties.</p>
+<ul class="simple">
+<li><p>Input: <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">past_days,</span> <span class="pre">num_counties,</span> <span class="pre">num_features)</span></code> county-day ERA5 tensors.</p></li>
+<li><p>Temporal: stacked selective SSM blocks plus a differential branch to highlight day-to-day changes.</p></li>
+<li><p>Spatial: two-layer GCN over a provided adjacency (falls back to identity if none is given).</p></li>
+<li><p>Output: per-county logits for the next day (apply <code class="docutils literal notranslate"><span class="pre">torch.sigmoid</span></code> for probabilities). Optional count head via <code class="docutils literal notranslate"><span class="pre">with_count_head=True</span></code>.</p></li>
+</ul>
+<p>Toy usage with random ERA5-like tensors:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazards.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataBundle</span><span class="p">,</span> <span class="n">DataSplit</span><span class="p">,</span> <span class="n">FeatureSpec</span><span class="p">,</span> <span class="n">LabelSpec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazards.engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyhazards.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_model</span>
+
+<span class="n">past_days</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">num_counties</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># e.g., t2m, d2m, u10, v10, tp, ssr</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="mi">64</span>
+
+<span class="c1"># Fake county-day ERA5 cube and binary fire labels</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">past_days</span><span class="p">,</span> <span class="n">num_counties</span><span class="p">,</span> <span class="n">num_features</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">num_counties</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+<span class="n">adjacency</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">num_counties</span><span class="p">)</span>  <span class="c1"># replace with a distance or correlation matrix</span>
+
+<span class="n">bundle</span> <span class="o">=</span> <span class="n">DataBundle</span><span class="p">(</span>
+    <span class="n">splits</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">DataSplit</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">48</span><span class="p">],</span> <span class="n">y</span><span class="p">[:</span><span class="mi">48</span><span class="p">]),</span>
+        <span class="s2">&quot;val&quot;</span><span class="p">:</span> <span class="n">DataSplit</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">48</span><span class="p">:],</span> <span class="n">y</span><span class="p">[</span><span class="mi">48</span><span class="p">:]),</span>
+    <span class="p">},</span>
+    <span class="n">feature_spec</span><span class="o">=</span><span class="n">FeatureSpec</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">num_features</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;past_days&quot;</span><span class="p">:</span> <span class="n">past_days</span><span class="p">,</span> <span class="s2">&quot;counties&quot;</span><span class="p">:</span> <span class="n">num_counties</span><span class="p">}),</span>
+    <span class="n">label_spec</span><span class="o">=</span><span class="n">LabelSpec</span><span class="p">(</span><span class="n">num_targets</span><span class="o">=</span><span class="n">num_counties</span><span class="p">,</span> <span class="n">task_type</span><span class="o">=</span><span class="s2">&quot;classification&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">build_model</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;wildfire_mamba&quot;</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="s2">&quot;classification&quot;</span><span class="p">,</span>
+    <span class="n">in_dim</span><span class="o">=</span><span class="n">num_features</span><span class="p">,</span>
+    <span class="n">num_counties</span><span class="o">=</span><span class="n">num_counties</span><span class="p">,</span>
+    <span class="n">past_days</span><span class="o">=</span><span class="n">past_days</span><span class="p">,</span>
+    <span class="n">adjacency</span><span class="o">=</span><span class="n">adjacency</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">mixed_precision</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+<span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">()</span>
+
+<span class="c1"># Fit on the toy data; Trainer works because inputs/targets are plain tensors</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">bundle</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">loss_fn</span><span class="o">=</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Predict probabilities for the next day</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">probs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># (1, num_counties)</span>
+
+<span class="c1"># For more complex batches (dicts with adjacency), wrap tensors in GraphTemporalDataset</span>
+<span class="c1"># and pass graph_collate to Trainer.fit/evaluate/predict.</span>
+</pre></div>
+</div>
+</section>
 <section id="design-notes">
 <h2>Design notes<a class="headerlink" href="#design-notes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -375,6 +436,7 @@
 <li><a class="reference internal" href="#core-modules">Core modules</a></li>
 <li><a class="reference internal" href="#build-a-built-in-model">Build a built-in model</a></li>
 <li><a class="reference internal" href="#register-a-custom-model">Register a custom model</a></li>
+<li><a class="reference internal" href="#mamba-based-wildfire-model-spatio-temporal">Mamba-based wildfire model (spatio-temporal)</a></li>
 <li><a class="reference internal" href="#design-notes">Design notes</a></li>
 </ul>
 </li>

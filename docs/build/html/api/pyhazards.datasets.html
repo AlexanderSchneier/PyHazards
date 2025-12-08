@@ -583,6 +583,15 @@ Subclasses should load data and return a DataBundle with splits ready for traini
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="pyhazards.datasets.GraphTemporalDataset">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyhazards.datasets.</span></span><span class="sig-name descname"><span class="pre">GraphTemporalDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjacency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/datasets/graph.html#GraphTemporalDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.datasets.GraphTemporalDataset" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
+<p>Simple container for county/day style tensors with an optional adjacency.</p>
+<p>Each sample is a window of shape (past_days, num_counties, num_features) and a label
+of shape (num_counties,).</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="pyhazards.datasets.LabelSpec">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyhazards.datasets.</span></span><span class="sig-name descname"><span class="pre">LabelSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_targets=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_type='regression'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/datasets/base.html#LabelSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.datasets.LabelSpec" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -613,6 +622,12 @@ Subclasses should load data and return a DataBundle with splits ready for traini
 <dt class="sig sig-object py" id="pyhazards.datasets.available_datasets">
 <span class="sig-prename descclassname"><span class="pre">pyhazards.datasets.</span></span><span class="sig-name descname"><span class="pre">available_datasets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/datasets/registry.html#available_datasets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.datasets.available_datasets" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyhazards.datasets.graph_collate">
+<span class="sig-prename descclassname"><span class="pre">pyhazards.datasets.</span></span><span class="sig-name descname"><span class="pre">graph_collate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/datasets/graph.html#graph_collate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.datasets.graph_collate" title="Link to this definition">¶</a></dt>
+<dd><p>Collate function that stacks x and adjacency if provided.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyhazards.datasets.load_dataset">
@@ -754,6 +769,7 @@ Subclasses should load data and return a DataBundle with splits ready for traini
 <li><a class="reference internal" href="#pyhazards.datasets.FeatureSpec.input_dim"><code class="docutils literal notranslate"><span class="pre">FeatureSpec.input_dim</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#pyhazards.datasets.GraphTemporalDataset"><code class="docutils literal notranslate"><span class="pre">GraphTemporalDataset</span></code></a></li>
 <li><a class="reference internal" href="#pyhazards.datasets.LabelSpec"><code class="docutils literal notranslate"><span class="pre">LabelSpec</span></code></a><ul>
 <li><a class="reference internal" href="#pyhazards.datasets.LabelSpec.description"><code class="docutils literal notranslate"><span class="pre">LabelSpec.description</span></code></a></li>
 <li><a class="reference internal" href="#pyhazards.datasets.LabelSpec.extra"><code class="docutils literal notranslate"><span class="pre">LabelSpec.extra</span></code></a></li>
@@ -762,6 +778,7 @@ Subclasses should load data and return a DataBundle with splits ready for traini
 </ul>
 </li>
 <li><a class="reference internal" href="#pyhazards.datasets.available_datasets"><code class="docutils literal notranslate"><span class="pre">available_datasets()</span></code></a></li>
+<li><a class="reference internal" href="#pyhazards.datasets.graph_collate"><code class="docutils literal notranslate"><span class="pre">graph_collate()</span></code></a></li>
 <li><a class="reference internal" href="#pyhazards.datasets.load_dataset"><code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code></a></li>
 <li><a class="reference internal" href="#pyhazards.datasets.register_dataset"><code class="docutils literal notranslate"><span class="pre">register_dataset()</span></code></a></li>
 </ul>

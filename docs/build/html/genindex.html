@@ -243,7 +243,7 @@
           
 <section class="genindex-section">
   <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a></div>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#W"><strong>W</strong></a></div>
 </section>
 <section id="_" class="genindex-section">
   <h2>_</h2>
@@ -269,6 +269,8 @@
           <li><a href="api/pyhazards.html#pyhazards.SegmentationMetrics._abc_impl">(pyhazards.SegmentationMetrics attribute)</a>
 </li>
         </ul></li>
+        <li><a href="api/pyhazards.models.html#pyhazards.models.WildfireMamba._get_adjacency">_get_adjacency() (pyhazards.models.WildfireMamba method)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api/pyhazards.datasets.html#pyhazards.datasets.base.Transform._is_protocol">_is_protocol (pyhazards.datasets.base.Transform attribute)</a>
@@ -287,6 +289,16 @@
           <li><a href="api/pyhazards.engine.html#pyhazards.engine.trainer.Trainer._make_loader">(pyhazards.engine.trainer.Trainer method)</a>
 </li>
           <li><a href="api/pyhazards.html#pyhazards.Trainer._make_loader">(pyhazards.Trainer method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/pyhazards.models.html#pyhazards.models.WildfireMamba._temporal_delta">_temporal_delta() (pyhazards.models.WildfireMamba static method)</a>
+</li>
+        <li><a href="api/pyhazards.engine.html#pyhazards.engine.Trainer._to_device">_to_device() (pyhazards.engine.Trainer method)</a>
+
+        <ul>
+          <li><a href="api/pyhazards.engine.html#pyhazards.engine.trainer.Trainer._to_device">(pyhazards.engine.trainer.Trainer method)</a>
+</li>
+          <li><a href="api/pyhazards.html#pyhazards.Trainer._to_device">(pyhazards.Trainer method)</a>
 </li>
         </ul></li>
     </ul></td>
@@ -550,6 +562,8 @@
 </li>
           <li><a href="api/pyhazards.models.html#pyhazards.models.TemporalEncoder.forward">(pyhazards.models.TemporalEncoder method)</a>
 </li>
+          <li><a href="api/pyhazards.models.html#pyhazards.models.WildfireMamba.forward">(pyhazards.models.WildfireMamba method)</a>
+</li>
           <li><a href="api/pyhazards.html#pyhazards.RegressionHead.forward">(pyhazards.RegressionHead method)</a>
 </li>
           <li><a href="api/pyhazards.html#pyhazards.SegmentationHead.forward">(pyhazards.SegmentationHead method)</a>
@@ -577,10 +591,10 @@
           <li><a href="api/pyhazards.utils.html#pyhazards.utils.common.get_logger">(in module pyhazards.utils.common)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api/pyhazards.models.html#pyhazards.models.registry.get_model_config">get_model_config() (in module pyhazards.models.registry)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api/pyhazards.html#pyhazards.DataBundle.get_split">get_split() (pyhazards.DataBundle method)</a>
 
         <ul>
@@ -589,6 +603,10 @@
           <li><a href="api/pyhazards.datasets.html#pyhazards.datasets.DataBundle.get_split">(pyhazards.datasets.DataBundle method)</a>
 </li>
         </ul></li>
+        <li><a href="api/pyhazards.datasets.html#pyhazards.datasets.graph_collate">graph_collate() (in module pyhazards.datasets)</a>
+</li>
+        <li><a href="api/pyhazards.datasets.html#pyhazards.datasets.GraphTemporalDataset">GraphTemporalDataset (class in pyhazards.datasets)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -1013,14 +1031,16 @@
           <li><a href="api/pyhazards.metrics.html#pyhazards.metrics.SegmentationMetrics">(class in pyhazards.metrics)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="api/pyhazards.engine.html#pyhazards.engine.select_strategy">select_strategy() (in module pyhazards.engine)</a>
 
         <ul>
           <li><a href="api/pyhazards.engine.html#pyhazards.engine.distributed.select_strategy">(in module pyhazards.engine.distributed)</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/pyhazards.models.html#pyhazards.models.WildfireMamba.set_adjacency">set_adjacency() (pyhazards.models.WildfireMamba method)</a>
+</li>
         <li><a href="api/pyhazards.utils.html#pyhazards.utils.set_device">set_device() (in module pyhazards.utils)</a>
 
         <ul>
@@ -1117,6 +1137,20 @@
           <li><a href="api/pyhazards.html#pyhazards.SegmentationMetrics.update">(pyhazards.SegmentationMetrics method)</a>
 </li>
         </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/pyhazards.models.html#pyhazards.models.wildfire_mamba_builder">wildfire_mamba_builder() (in module pyhazards.models)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/pyhazards.models.html#pyhazards.models.WildfireMamba">WildfireMamba (class in pyhazards.models)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>

@@ -459,6 +459,69 @@ This delegates to registry metadata to keep a consistent interface.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="pyhazards.models.WildfireMamba">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyhazards.models.</span></span><span class="sig-name descname"><span class="pre">WildfireMamba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_counties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">past_days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gcn_hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mamba_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_kernel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjacency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_count_head</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/models/wildfire_mamba.html#WildfireMamba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.models.WildfireMamba" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Mamba-based spatio-temporal wildfire model for county-day ERA5 features.</p>
+<p>Input shape: (batch, past_days, num_counties, num_features)
+Output: logits per county for the next day (use sigmoid for probabilities)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyhazards.models.WildfireMamba._get_adjacency">
+<span class="sig-name descname"><span class="pre">_get_adjacency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/models/wildfire_mamba.html#WildfireMamba._get_adjacency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.models.WildfireMamba._get_adjacency" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyhazards.models.WildfireMamba._temporal_delta">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_temporal_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/models/wildfire_mamba.html#WildfireMamba._temporal_delta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.models.WildfireMamba._temporal_delta" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyhazards.models.WildfireMamba.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjacency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/models/wildfire_mamba.html#WildfireMamba.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.models.WildfireMamba.forward" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code></span>) – Tensor shaped (batch, past_days, num_counties, in_dim)</p></li>
+<li><p><strong>adjacency</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]</span>) – Optional (N, N) or (B, N, N) adjacency override.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(batch, num_counties)
+- optional counts: (batch, num_counties) if with_count_head is enabled.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>logits</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyhazards.models.WildfireMamba.set_adjacency">
+<span class="sig-name descname"><span class="pre">set_adjacency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/models/wildfire_mamba.html#WildfireMamba.set_adjacency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.models.WildfireMamba.set_adjacency" title="Link to this definition">¶</a></dt>
+<dd><p>Set/override the spatial adjacency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="pyhazards.models.available_models">
 <span class="sig-prename descclassname"><span class="pre">pyhazards.models.</span></span><span class="sig-name descname"><span class="pre">available_models</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/models/registry.html#available_models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.models.available_models" title="Link to this definition">¶</a></dt>
@@ -482,6 +545,17 @@ This delegates to registry metadata to keep a consistent interface.</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyhazards.models.wildfire_mamba_builder">
+<span class="sig-prename descclassname"><span class="pre">pyhazards.models.</span></span><span class="sig-name descname"><span class="pre">wildfire_mamba_builder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_counties</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">past_days</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyhazards/models/wildfire_mamba.html#wildfire_mamba_builder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyhazards.models.wildfire_mamba_builder" title="Link to this definition">¶</a></dt>
+<dd><p>Builder used by the model registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pyhazards.models.WildfireMamba" title="pyhazards.models.wildfire_mamba.WildfireMamba"><code class="xref py py-class docutils literal notranslate"><span class="pre">WildfireMamba</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -594,9 +668,17 @@ This delegates to registry metadata to keep a consistent interface.</p>
 <li><a class="reference internal" href="#pyhazards.models.TemporalEncoder.forward"><code class="docutils literal notranslate"><span class="pre">TemporalEncoder.forward()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#pyhazards.models.WildfireMamba"><code class="docutils literal notranslate"><span class="pre">WildfireMamba</span></code></a><ul>
+<li><a class="reference internal" href="#pyhazards.models.WildfireMamba._get_adjacency"><code class="docutils literal notranslate"><span class="pre">WildfireMamba._get_adjacency()</span></code></a></li>
+<li><a class="reference internal" href="#pyhazards.models.WildfireMamba._temporal_delta"><code class="docutils literal notranslate"><span class="pre">WildfireMamba._temporal_delta()</span></code></a></li>
+<li><a class="reference internal" href="#pyhazards.models.WildfireMamba.forward"><code class="docutils literal notranslate"><span class="pre">WildfireMamba.forward()</span></code></a></li>
+<li><a class="reference internal" href="#pyhazards.models.WildfireMamba.set_adjacency"><code class="docutils literal notranslate"><span class="pre">WildfireMamba.set_adjacency()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#pyhazards.models.available_models"><code class="docutils literal notranslate"><span class="pre">available_models()</span></code></a></li>
 <li><a class="reference internal" href="#pyhazards.models.build_model"><code class="docutils literal notranslate"><span class="pre">build_model()</span></code></a></li>
 <li><a class="reference internal" href="#pyhazards.models.register_model"><code class="docutils literal notranslate"><span class="pre">register_model()</span></code></a></li>
+<li><a class="reference internal" href="#pyhazards.models.wildfire_mamba_builder"><code class="docutils literal notranslate"><span class="pre">wildfire_mamba_builder()</span></code></a></li>
 </ul>
 </li>
 </ul>
