@@ -6,13 +6,30 @@ Summary
 
 PyHazards provides a unified dataset interface for hazard prediction across tabular, temporal, and raster data. Each dataset returns a ``DataBundle`` containing splits, feature specs, label specs, and metadata.
 
-Dataset
--------
-
+Homogeneous Datasets
+--------------------
 
 Homogeneous graph datasets where all nodes and edges share the same feature
 and label spaces. These datasets are commonly used for benchmarking node-level
 and graph-level learning tasks.
+
+.. list-table::
+   :widths: 18 82
+   :header-rows: 0
+   :class: dataset-list
+
+   * - ``merra2``
+     - Zachary's karate club network from the *An Information Flow Model for Conflict and Fission in Small Groups* paper, containing 34 nodes, connected by 156 (undirected and unweighted) edges.
+   * - ``era5``
+     - A variety of graph kernel benchmark datasets, e.g., *IMDB-BINARY*, *REDDIT-BINARY* or *PROTEINS*, collected from the TU Dortmund University.
+   * - ``noaa``
+     - A variety of artificially and semi-artificially generated graph datasets from the *Benchmarking Graph Neural Networks* paper.
+   * - ``firms``
+     - The citation network datasets *Cora*, *CiteSeer* and *PubMed* from the *Revisiting Semi-Supervised Learning with Graph Embeddings* paper.
+   * - ``mtbs``
+     - The NELL dataset, a knowledge graph from the *Toward an Architecture for Never-Ending Language Learning* paper.
+   * - ``wildfire``
+     - The full citation network datasets from the *Deep Gaussian Embedding of Graphs: Unsupervised Inductive Learning via Ranking* paper.
 
 Core classes
 ------------
