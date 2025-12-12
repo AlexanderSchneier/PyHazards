@@ -6,6 +6,14 @@ Summary
 
 PyHazards provides a unified dataset interface for hazard prediction across tabular, temporal, and raster data. Each dataset returns a ``DataBundle`` containing splits, feature specs, label specs, and metadata.
 
+Dataset
+-------
+
+
+Homogeneous graph datasets where all nodes and edges share the same feature
+and label spaces. These datasets are commonly used for benchmarking node-level
+and graph-level learning tasks.
+
 Core classes
 ------------
 
