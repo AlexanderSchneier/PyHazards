@@ -54,3 +54,7 @@ html_theme_options = {
     "navigation_with_keys": True,
     "sidebar_hide_name": False,
 }
+
+html_css_files = [
+    'custom.css',
+]
