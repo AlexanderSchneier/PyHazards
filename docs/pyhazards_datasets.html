@@ -254,6 +254,37 @@
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
 <p>PyHazards provides a unified dataset interface for hazard prediction across tabular, temporal, and raster data. Each dataset returns a <code class="docutils literal notranslate"><span class="pre">DataBundle</span></code> containing splits, feature specs, label specs, and metadata.</p>
 </section>
+<section id="id1">
+<h2>Datasets<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper colwidths-given dataset-list docutils container">
+<table class="dataset-list docutils align-default">
+<colgroup>
+<col style="width: 18.0%" />
+<col style="width: 82.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MERRA2</span></code></p></td>
+<td><p>MERRA-2 is a global weather and climate dataset created by NASA that provides long-term records of atmospheric conditions from 1980 to the present. The data are organized on a regular global grid with hourly to monthly updates and a spatial resolution of about 0.5° × 0.625°, and include variables such as temperature, wind, humidity, surface fluxes, and aerosols, making it useful for large-scale climate and hazard analysis worldwide.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ERA5</span></code></p></td>
+<td><p>ERA5 is a global reanalysis dataset produced by ECMWF and is commonly used as a reference for weather and climate studies. It covers the period from 1950 to the present and provides hourly data on a global grid at roughly 0.25° resolution, including precipitation, temperature, wind, and land-surface variables, which allows detailed environmental and hazard modeling at a global scale.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NOAA</span> <span class="pre">Flood</span> <span class="pre">Events</span> <span class="pre">(Storm</span> <span class="pre">Events</span> <span class="pre">Database)</span></code></p></td>
+<td><p>The NOAA Flood Events dataset collects reported flood events across the United States, including when and where floods occurred and the impacts they caused. The data are stored as event-based records rather than grid data, usually at county or local levels, and span many decades, making them suitable for analyzing flood patterns and risks within the U.S.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FIRMS</span> <span class="pre">(Fire</span> <span class="pre">Information</span> <span class="pre">for</span> <span class="pre">Resource</span> <span class="pre">Management</span> <span class="pre">System)</span></code></p></td>
+<td><p>FIRMS (Fire Information for Resource Management System) provides near-real-time satellite observations of active fires around the world. The dataset consists of time-stamped fire locations detected by MODIS and VIIRS sensors at spatial resolutions between about 375 m and 1 km, and is widely used for global wildfire monitoring and analysis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MTBS</span> <span class="pre">(Monitoring</span> <span class="pre">Trends</span> <span class="pre">in</span> <span class="pre">Burn</span> <span class="pre">Severity)</span></code></p></td>
+<td><p>MTBS (Monitoring Trends in Burn Severity) is a dataset that maps wildfire burn areas and severity across the United States. It focuses on large fires since 1984 and uses Landsat satellite imagery at 30 m resolution, making it useful for studying long-term wildfire impacts and regional fire risk.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LANDFIRE</span> <span class="pre">Fuel</span> <span class="pre">(USFS</span> <span class="pre">/</span> <span class="pre">LANDFIRE)</span></code></p></td>
+<td><p>LANDFIRE provides fuel and vegetation information across the United States to support wildfire modeling and risk assessment. The data are distributed as raster layers at about 30 m resolution and describe fuel models, canopy structure, and vegetation types, helping researchers and practitioners understand and simulate wildfire behavior at landscape scales.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 <section id="core-classes">
 <h2>Core classes<a class="headerlink" href="#core-classes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -350,6 +381,7 @@
             <ul>
 <li><a class="reference internal" href="#">Datasets</a><ul>
 <li><a class="reference internal" href="#summary">Summary</a></li>
+<li><a class="reference internal" href="#id1">Datasets</a></li>
 <li><a class="reference internal" href="#core-classes">Core classes</a></li>
 <li><a class="reference internal" href="#example-skeleton">Example skeleton</a></li>
 </ul>
