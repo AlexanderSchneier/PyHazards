@@ -49,13 +49,23 @@ class HydroGraphNet(nn.Module):
         # ---- encoder ----
         node = self.node_encoder(node_x)
 
-        # simple edge features (ones) for now
-        edge_x = torch.ones(
-            node.size(0),
-            senders.numel(),
-            self.edge_in_dim,
-            device=node.device
-        )
+        # edge features from geometry: [Δx, Δy, distance]
+        coords = batch.get("coords")
+        if coords is None:
+            coords = torch.zeros(node.size(1), 2, device=node.device)
+        else:
+            coords = coords.to(node.device)
+
+        src = coords[senders]      # (E, 2)
+        dst = coords[receivers]    # (E, 2)
+
+        delta = src - dst          # (E, 2)
+        dist = torch.norm(delta, dim=-1, keepdim=True)  # (E, 1)
+
+        edge_feat = torch.cat([delta, dist], dim=-1)    # (E, 3)
+
+        edge_x = edge_feat.unsqueeze(0).repeat(node.size(0), 1, 1)
+
 
         edge = self.edge_encoder(edge_x)
 
@@ -64,8 +74,13 @@ class HydroGraphNet(nn.Module):
             node, edge = gn(node, edge, senders, receivers)
 
         # ---- decoder ----
-        out = self.decoder(node)
-        return out
+        # autoregressive update 
+        delta = self.decoder(node)          # Δy
+        y_prev = node_x[..., :delta.size(-1)]  # y_t (assumes target is part of node features)
+        y_next = y_prev + delta             # y_{t+1}
+
+        return y_next
+
 
 
 class MLP(nn.Module):
@@ -141,14 +156,27 @@ class GN(nn.Module):
 
         return node, edge
 
+# Incompleted loss function
+# class HydroGraphLoss(nn.Module):
+#     def __init__(self, lambda_phys: float = 1.0):
+#         super().__init__()
+#         self.lambda_phys = lambda_phys
 
-class HydroGraphLoss(nn.Module):
-    "PREDICTION"
-    def __init__(self):
-        super().__init__()
-    def forward(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
-        return F.mse_loss(pred, target)
+#     def forward(
+#         self,
+#         pred: torch.Tensor,      # y_hat(t+1)
+#         target: torch.Tensor,    # y(t+1)
+#         y_prev: torch.Tensor,    # y(t)
+#         flux: torch.Tensor,      # Φ_ij
+#         cell_area: torch.Tensor # A_i
+#     ) -> torch.Tensor:
+#         data_loss = F.mse_loss(pred, target)
 
+#         delta_volume = (pred - y_prev) * cell_area
+#         residual = delta_volume - flux
+#         physics_loss = torch.mean(residual ** 2)
+
+#         return data_loss + self.lambda_phys * physics_loss
 
 def hydrographnet_builder(
     task: str,
