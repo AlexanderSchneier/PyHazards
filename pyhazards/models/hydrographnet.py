@@ -16,7 +16,6 @@ class HydroGraphNet(nn.Module):
         num_gn_blocks: int = 5,
     ):
         super().__init__()
-        self.edge_in_dim = edge_in_dim
 
         #-------encoder-------
         self.node_encoder = KAN(in_dim = node_in_dim, hidden_dim = hidden_dim, harmonics = harmonics)
@@ -35,14 +34,11 @@ class HydroGraphNet(nn.Module):
         x = batch["x"]        # (B, past_days, N, F)
         adj = batch["adj"]    # (B, N, N) or None
 
-        # use last timestep
         node_x = x[:, -1]     # (B, N, F)
 
-        # ---- build senders / receivers from adjacency ----
         if adj is None:
             raise ValueError("HydroGraphNet requires adjacency")
 
-        # assume same adjacency for whole batch
         A = adj[0]            # (N, N)
         senders, receivers = A.nonzero(as_tuple=True)
 
@@ -155,28 +151,6 @@ class GN(nn.Module):
         node = node + self.node_mlp(node_input)
 
         return node, edge
-
-# Incompleted loss function
-# class HydroGraphLoss(nn.Module):
-#     def __init__(self, lambda_phys: float = 1.0):
-#         super().__init__()
-#         self.lambda_phys = lambda_phys
-
-#     def forward(
-#         self,
-#         pred: torch.Tensor,      # y_hat(t+1)
-#         target: torch.Tensor,    # y(t+1)
-#         y_prev: torch.Tensor,    # y(t)
-#         flux: torch.Tensor,      # Φ_ij
-#         cell_area: torch.Tensor # A_i
-#     ) -> torch.Tensor:
-#         data_loss = F.mse_loss(pred, target)
-
-#         delta_volume = (pred - y_prev) * cell_area
-#         residual = delta_volume - flux
-#         physics_loss = torch.mean(residual ** 2)
-
-#         return data_loss + self.lambda_phys * physics_loss
 
 def hydrographnet_builder(
     task: str,

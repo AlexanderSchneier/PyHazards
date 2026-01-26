@@ -39,19 +39,17 @@ def load_hydrograph_data(
     files = sorted(Path(era5_path).glob("*.nc"))
     assert len(files) > 0, "No ERA5 NetCDF files found"
 
-    # 🔑 MERGE ALL ERA5 VARIABLES INTO ONE DATASET
 
     ds = xr.open_mfdataset(
         files,
         combine="by_coords",
-        chunks={},   # <-- disables dask
+        chunks={},
     )
 
 
     lats = ds["latitude"].values
     lons = ds["longitude"].values
 
-    # ERA5 latitude is often descending
     if lats[0] > lats[-1]:
         ds = ds.sortby("latitude")
         lats = ds["latitude"].values
@@ -63,14 +61,12 @@ def load_hydrograph_data(
         dtype=torch.float,
     )
 
-    # Subsample for tractability
     mesh_coords = mesh_coords[:max_nodes]
 
-    # ERA5 variables (short names)
+    # ERA5 variables
     precip = ds["tp"].values    # total precipitation
     temp = ds["t2m"].values     # 2m temperature
 
-    # Average over time if present
     if precip.ndim == 3:
         precip = precip.mean(axis=0)
         temp = temp.mean(axis=0)
@@ -82,9 +78,7 @@ def load_hydrograph_data(
         node_feats.append([precip[i, j], temp[i, j]])
 
     X = torch.tensor(node_feats, dtype=torch.float).unsqueeze(0).unsqueeze(0)
-    # shape: (samples=1, past_days=1, num_nodes, features=2)
 
-    # Dummy regression target: predict precipitation
     Y = X[:, 0, :, 0:1]  # (1, num_nodes)
 
     adjacency = knn_adjacency(mesh_coords, k=4)

@@ -23,11 +23,6 @@ def rmse(pred, target):
 def main():
     torch.manual_seed(0)
 
-    # -----------------------------
-    # Load REAL ERA5 dataset
-    # -----------------------------
-    mesh_coords = torch.rand(20, 2)  # placeholder geometry
-
     bundle = load_hydrograph_data(
         era5_path="pyhazards/data/era5_subset",
     )
@@ -37,7 +32,7 @@ def main():
     # Infer dimensions from dataset
     sample_x, sample_y = bundle.splits[train_split].inputs[0]
 
-    x_tensor = sample_x["x"]   # <-- THIS is the tensor
+    x_tensor = sample_x["x"] 
 
     past_days = x_tensor.shape[0]
     num_nodes = x_tensor.shape[1]
@@ -48,28 +43,20 @@ def main():
     print("  x:", x_tensor.shape)
     print("  y:", sample_y.shape)
 
-    # -----------------------------
     # Model
-    # -----------------------------
     model = build_model(
         name="hydrographnet",
         task="regression",
         node_in_dim=node_feats,
-        edge_in_dim=3,   # required by builder (ignored internally)
+        edge_in_dim=3,  
         out_dim=out_dim,
     )
-
-    # -----------------------------
     # Optimizer + loss
-    # -----------------------------
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
     def loss_fn(pred, target):
         return F.mse_loss(pred, target)
-
-    # -----------------------------
     # Trainer
-    # -----------------------------
     trainer = Trainer(model=model)
 
     trainer.fit(
@@ -82,10 +69,7 @@ def main():
         max_epochs=5,
         collate_fn=graph_collate,
     )
-
-    # -----------------------------
     # Manual evaluation
-    # -----------------------------
     model.eval()
     with torch.no_grad():
         dataset = bundle.splits[train_split].inputs
